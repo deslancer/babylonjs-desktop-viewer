@@ -4,7 +4,7 @@ import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useEffect, useState } from 'react'
 import Header from './components/Header'
-import loadMesh from './logic/loadMesh'
+import { loadFile } from './handlers/files'
 
 const api = window.api
 
@@ -13,12 +13,16 @@ function App() {
   const loadOpenedFromCtxFile = async () => {
     const file = await api.openFileWithCtx()
     if (file && file.data) {
-      await loadMesh(file.data)
+      await loadFile(file.data)
       setIsFileLoaded(true)
     }
   }
   useEffect(() => {
-    loadOpenedFromCtxFile()
+    try {
+      loadOpenedFromCtxFile()
+    } catch (e) {
+      console.log(e)
+    }
   }, [])
   return (
     <DndProvider backend={HTML5Backend}>

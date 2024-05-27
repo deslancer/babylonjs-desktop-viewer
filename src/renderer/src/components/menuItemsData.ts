@@ -1,5 +1,5 @@
 import { MenuItemType } from '../types/MenuItem'
-import { openFile } from '../handlers/files'
+import { openAndLoadFile } from '../handlers/files'
 
 export const menuItemsData: MenuItemType[] = [
   {
@@ -8,7 +8,7 @@ export const menuItemsData: MenuItemType[] = [
     submenu: [
       {
         title: 'Open File',
-        action: openFile
+        action: openAndLoadFile
       }
     ]
   },

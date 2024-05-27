@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { DropTargetMonitor, useDrop } from 'react-dnd'
 import { NativeTypes } from 'react-dnd-html5-backend'
-import loadMesh from '../logic/loadMesh'
+import { loadFile } from '../handlers/files'
 
 interface DropFilesZoneProps {
   setIsFileLoaded: (isFileLoaded: boolean) => void
@@ -20,7 +20,8 @@ function DropFilesZone(props: DropFilesZoneProps) {
     const files = evt.target.files
     if (files && files.length > 0) {
       const file = files[0]
-      loadMesh(file).then(() => {
+
+      loadFile(file).then(() => {
         setIsFileLoaded(true)
       })
     }
@@ -30,7 +31,7 @@ function DropFilesZone(props: DropFilesZoneProps) {
       accept: [NativeTypes.FILE],
       drop(item: { files: any[] }) {
         const file = item.files[0]
-        loadMesh(file).then(() => {
+        loadFile(file).then(() => {
           setIsFileLoaded(true)
         })
       },

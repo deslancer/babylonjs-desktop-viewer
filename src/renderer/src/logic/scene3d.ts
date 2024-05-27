@@ -4,15 +4,14 @@ import {
   CubeTexture,
   Engine,
   HemisphericLight,
-  MeshBuilder,
   Scene,
   Vector3
 } from '@babylonjs/core'
-import { GridMaterial } from '@babylonjs/materials/Grid'
 import { on } from '../events/events'
 import '@babylonjs/core/Debug/debugLayer'
 import '@babylonjs/inspector'
 import { envMap } from './envMap'
+import { setSceneEnv } from './setSceneEnv'
 
 //const api: any = window.api
 
@@ -28,10 +27,8 @@ export async function createScene(canvas: HTMLCanvasElement): Promise<void> {
   const light = new HemisphericLight('light1', new Vector3(0, 1, 0), scene)
   light.intensity = 0.7
   on('mesh:loaded', async () => {
-    //const base64 = await api.getFileData('assets/textures/royal_esplanade.env')
-
     const textureData = 'data:octet/stream;base64,' + envMap
-    const cubeTexture = new CubeTexture(
+    scene.environmentTexture = new CubeTexture(
       textureData,
       scene,
       undefined,
@@ -43,21 +40,16 @@ export async function createScene(canvas: HTMLCanvasElement): Promise<void> {
       undefined,
       '.env'
     )
-    scene.environmentTexture = cubeTexture
-    scene.createDefaultSkybox(cubeTexture, true, 1000)
-    const groundMaterial = new GridMaterial('groundMaterial', scene)
-    groundMaterial.majorUnitFrequency = 5
-    groundMaterial.minorUnitVisibility = 0.5
-    groundMaterial.gridRatio = 2
-    groundMaterial.opacity = 0.97
-    groundMaterial.useMaxLine = true
-
-    const ground = MeshBuilder.CreateGround('ground', { width: 100, height: 100 }, scene)
-
-    ground.material = groundMaterial
+    setSceneEnv()
     await scene.debugLayer.show({
       globalRoot: document.body
     })
+    engine.runRenderLoop(() => {
+      scene.render()
+    })
+  })
+  on('texture:loaded', async () => {
+    setSceneEnv()
     engine.runRenderLoop(() => {
       scene.render()
     })
@@ -91,9 +83,4 @@ export async function createScene(canvas: HTMLCanvasElement): Promise<void> {
   window.addEventListener('resize', () => {
     engine.resize()
   })
-
-  /* const ipcHandlerBtn = document.getElementById('ipcHandler')
-   ipcHandlerBtn?.addEventListener('click', () => {
-     window.electron.ipcRenderer.send('ping')
-   })*/
 }
