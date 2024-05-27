@@ -1,5 +1,6 @@
 import { MenuItemType } from '../types/MenuItem'
 import { openAndLoadFile } from '../handlers/files'
+import { toggleAutoRotation } from '../logic/viewActions'
 
 export const menuItemsData: MenuItemType[] = [
   {
@@ -13,7 +14,13 @@ export const menuItemsData: MenuItemType[] = [
     ]
   },
   {
-    title: 'About',
-    action: null
+    title: 'View',
+    action: null,
+    submenu: [
+      {
+        title: 'Toggle AutoRotation',
+        action: toggleAutoRotation
+      }
+    ]
   }
 ]
