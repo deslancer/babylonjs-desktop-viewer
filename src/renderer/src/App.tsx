@@ -13,16 +13,12 @@ function App() {
   const loadOpenedFromCtxFile = async () => {
     const file = await api.openFileWithCtx()
     if (file && file.data) {
-      await loadFile(file.data)
+      await loadFile(file)
       setIsFileLoaded(true)
     }
   }
   useEffect(() => {
-    try {
-      loadOpenedFromCtxFile()
-    } catch (e) {
-      console.log(e)
-    }
+    loadOpenedFromCtxFile()
   }, [])
   return (
     <DndProvider backend={HTML5Backend}>

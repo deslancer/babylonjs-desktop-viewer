@@ -21,7 +21,6 @@ export async function createScene(canvas: HTMLCanvasElement): Promise<void> {
   scene.clearColor = new Color4(0.0, 0.0, 0.0, 0.0)
   const camera = new ArcRotateCamera('Camera', 1.13, Math.PI / 2.3, 9, new Vector3(0, 0, 0), scene)
   camera.lowerRadiusLimit = 7
-  camera.upperRadiusLimit = 15
   camera.attachControl(canvas, true)
 
   const light = new HemisphericLight('light1', new Vector3(0, 1, 0), scene)

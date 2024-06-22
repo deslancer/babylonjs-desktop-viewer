@@ -1,9 +1,12 @@
 {
   "name": "bjs-viewer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "3d viewer",
   "main": "./out/main/index.js",
-  "author": "deslancer",
+  "author": {
+    "name": "deslancer",
+    "email": "deslancer@pm.me"
+  },
   "homepage": "https://github.com/deslancer",
   "scripts": {
     "format": "prettier --write .",
@@ -54,6 +57,12 @@
   "build": {
     "win": {
       "icon": "./resources/app_icon.ico"
+    },
+    "linux": {
+      "target": "deb"
+    },
+    "mac": {
+      "target": "dmg"
     }
   }
 }

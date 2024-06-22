@@ -23,7 +23,7 @@ function createWindow(): BrowserWindow {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow?.show()
-    mainWindow?.webContents.openDevTools()
+    //mainWindow?.webContents.openDevTools()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -48,13 +48,23 @@ app.whenReady().then(() => {
   })
   ipcMain.handle('context:openFile', function (_event: Electron.IpcMainInvokeEvent) {
     const openFilePath = process.argv[1]
-    if (openFilePath) {
-      const base64 = fs.readFileSync(openFilePath).toString('base64')
-      return {
-        path: openFilePath,
-        data: base64
+    try {
+      const stats = fs.statSync(openFilePath)
+      if (stats.isDirectory()) {
+        console.log('The path is a directory')
+      } else {
+        if (openFilePath) {
+          const base64 = fs.readFileSync(openFilePath).toString('base64')
+          return {
+            path: openFilePath,
+            data: base64
+          }
+        }
       }
+    } catch (error: any) {
+      console.error('An error occurred:', error.message)
     }
+
     return []
   })
   ipcMain.handle('getFileData', async (_event: Electron.IpcMainInvokeEvent, f_path: string) => {
