@@ -4,6 +4,7 @@ import { electronAPI } from '@electron-toolkit/preload'
 export const API = {
   selectFile: () => ipcRenderer.invoke('dialog:openFile'),
   openFileWithCtx: () => ipcRenderer.invoke('context:openFile'),
+  testCall: () => ipcRenderer.invoke('test'),
   getFileData: (path: string) => ipcRenderer.invoke('getFileData', path)
 }
 

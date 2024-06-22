@@ -5,6 +5,8 @@ import icon from '../../resources/icon.png?asset'
 import * as path from 'node:path'
 import * as fs from 'fs'
 
+const { add } = require('../../build/Release/addon.node')
+
 let mainWindow: BrowserWindow | null = null
 
 function createWindow(): BrowserWindow {
@@ -88,6 +90,9 @@ app.whenReady().then(() => {
         data: base64
       }
     }
+  })
+  ipcMain.handle('test', function (_event: Electron.IpcMainInvokeEvent) {
+    console.log(add(2, 3))
   })
   createWindow()
 
