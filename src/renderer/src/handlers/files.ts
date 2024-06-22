@@ -9,11 +9,11 @@ export const openAndLoadFile = async () => {
 }
 export const loadFile = async (file: LocalFile | File) => {
   const extension = file.path.split('.')[1]
-  if (extension.includes('glb' || extension.includes('gltf'))) {
+  if (extension.includes('glb') || extension.includes('gltf') || extension.includes('obj')) {
     if (file instanceof File) {
-      await loadMesh(file)
+      await loadMesh(file, `.${extension}`)
     } else {
-      await loadMesh(file.data)
+      await loadMesh(file.data, `.${extension}`)
     }
   }
   if (extension.includes('hdr')) {

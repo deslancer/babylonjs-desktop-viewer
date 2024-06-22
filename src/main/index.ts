@@ -23,7 +23,7 @@ function createWindow(): BrowserWindow {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow?.show()
-    //mainWindow?.webContents.openDevTools()
+    mainWindow?.webContents.openDevTools()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -75,8 +75,8 @@ app.whenReady().then(() => {
     const { canceled, filePaths } = await dialog.showOpenDialog(mainWindow || createWindow(), {
       properties: ['openFile'],
       filters: [
-        { name: 'Images', extensions: ['hdr', 'env', 'dds'] },
-        { name: '3d models', extensions: ['gltf', 'glb', 'babylon'] }
+        { name: '3d models', extensions: ['gltf', 'glb', 'babylon', 'obj'] },
+        { name: 'Images', extensions: ['hdr', 'env', 'dds'] }
       ]
     })
     if (canceled) {

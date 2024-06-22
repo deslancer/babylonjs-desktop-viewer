@@ -3,7 +3,7 @@ import { trigger } from '../events/events'
 import blobToBase64 from './blobToBase64'
 import '@babylonjs/loaders/'
 
-async function loadMesh(data: File | string): Promise<Scene | null> {
+async function loadMesh(data: File | string, ext: string): Promise<Scene | null> {
   const scene = window.scene
   let file: string
   if (typeof data === 'string') {
@@ -11,7 +11,7 @@ async function loadMesh(data: File | string): Promise<Scene | null> {
   } else {
     file = (await blobToBase64(data)) as string
   }
-
+  console.log(file)
   if (scene) {
     while (scene.meshes.length) {
       const mesh = scene.meshes[0]
@@ -22,7 +22,7 @@ async function loadMesh(data: File | string): Promise<Scene | null> {
       material.dispose()
     }
     trigger('mesh:loaded')
-    return SceneLoader.AppendAsync('', file, scene)
+    return SceneLoader.AppendAsync('', file, scene, () => {}, ext)
   } else {
     return null
   }
