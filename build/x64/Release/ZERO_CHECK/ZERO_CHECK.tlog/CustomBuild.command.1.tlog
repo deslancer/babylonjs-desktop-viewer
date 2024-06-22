@@ -1,0 +1,10 @@
+^F:\WORK\PET_PROJECTS\BJSVIEWER\BJS-VIEWER\BUILD\CMAKEFILES\6E1AF0FC6C1AD502BE60F15C9CA94D39\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SF:/WORK/Pet_projects/BJSViewer/bjs-viewer -BF:/WORK/Pet_projects/BJSViewer/bjs-viewer/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file F:/WORK/Pet_projects/BJSViewer/bjs-viewer/build/addon.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

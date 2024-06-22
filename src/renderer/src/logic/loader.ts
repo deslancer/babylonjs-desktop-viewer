@@ -11,7 +11,6 @@ async function loadMesh(data: File | string, ext: string): Promise<Scene | null>
   } else {
     file = (await blobToBase64(data)) as string
   }
-  console.log(file)
   if (scene) {
     while (scene.meshes.length) {
       const mesh = scene.meshes[0]
@@ -22,7 +21,20 @@ async function loadMesh(data: File | string, ext: string): Promise<Scene | null>
       material.dispose()
     }
     trigger('mesh:loaded')
-    return SceneLoader.AppendAsync('', file, scene, () => {}, ext)
+    return SceneLoader.AppendAsync(
+      '',
+      file,
+      scene,
+      (event) => {
+        const length = event.lengthComputable
+        const loaded = event.loaded
+        const total = event.total
+        console.log('loaded', loaded)
+        console.log('total', total)
+        console.log('length', length)
+      },
+      ext
+    )
   } else {
     return null
   }

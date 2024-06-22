@@ -1,0 +1,3 @@
+F:/WORK/Pet_projects/BJSViewer/bjs-viewer/build/CMakeFiles/addon.dir
+F:/WORK/Pet_projects/BJSViewer/bjs-viewer/build/CMakeFiles/ALL_BUILD.dir
+F:/WORK/Pet_projects/BJSViewer/bjs-viewer/build/CMakeFiles/ZERO_CHECK.dir

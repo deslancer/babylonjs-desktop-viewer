@@ -89,6 +89,7 @@ app.whenReady().then(() => {
       }
     }
   })
+
   createWindow()
 
   app.on('activate', function () {

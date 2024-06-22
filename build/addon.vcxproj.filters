@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\WORK\Pet_projects\BJSViewer\bjs-viewer\src\cpp\worker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\WORK\Pet_projects\BJSViewer\bjs-viewer\node_modules\cmake-js\lib\cpp\win_delay_load_hook.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="F:\WORK\Pet_projects\BJSViewer\bjs-viewer\src\cpp\worker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\WORK\Pet_projects\BJSViewer\bjs-viewer\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9D090981-D66C-37BB-AA25-C0C19B678A10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3EC9F728-E913-38C1-9C0C-6A20F529222F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
